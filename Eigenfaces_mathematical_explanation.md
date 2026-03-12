@@ -62,6 +62,9 @@ $$
 In both cases, projection answers: “How much of this data point lies along these directions?”
 
 ### 1) Center the data
+
+<br/>
+
 PCA workflows center the data so each feature has mean zero:
 
 $$
@@ -81,6 +84,9 @@ $$
 This centers every feature so its mean becomes 0.Centering is essential because PCA searches for variance — and mean offsets distort this.
 
 ### 2) Compute the Covariance Matrix
+
+<br/>
+
 The covariance matrix captures how features vary together. Essentially its a dot product between mean-zeroed features, therefore the diagonal entries of the covariance matrix are the variances of individual features. However, when you compute the covariance matrix in PCA, you’re estimating how features vary together from a sample of data and therefore use 1/(n−1) instead of 1/n which is called Bessel’s correction.
 
 $$
@@ -98,6 +104,8 @@ Geometrically:
 - The covariance matrix captures the shape of that cloud.
 
 ### 3) Compute Eigenvalues and Eigenvectors
+
+<br/>
 
 Perform eigen-decomposition on the covariance matrix:
 
@@ -142,6 +150,9 @@ $$
         - This is done because: algebraically cleaner, differentiates nicely, and plugs directly into Lagrange multipliers.
 
 #### This is just a constrained optmisation problem
+
+<br/>
+
 We solve this using the Lagrange Multiplier method. As a generic problem, we want to optimise a function subject to a constraint:
 
 $$
@@ -228,6 +239,8 @@ $$
 
 ### Gradients
 
+<br/>
+
 We compute the gradients of the objective and the constraint.  
 Since $C$ is symmetric:
 
@@ -303,6 +316,9 @@ $$
 Where $V_k$ is a $d \times k$ projection matrix and $d$ is the number of original features and $k$ is the number of eigenvectors. 
 
 ### 5) Project the data onto the principal components.
+
+<br/>
+
 This is actually the step where dimensionality reduction takes place. 
 
 To transform the original data into the lower‑dimensional space:
@@ -452,6 +468,7 @@ $$
 The covariance matrix captures how pixel values vary together across faces.
 
 ## Step 3) Compute eigenvectors (Eigenfaces)
+
 Solve the eigenvalue problem:
 
 $$
