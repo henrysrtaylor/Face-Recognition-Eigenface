@@ -27,6 +27,7 @@ PCA finds directions of maximum variance in your data. These directions are call
 
 How it works:
 Assume we have the following data (where $x_i$ is a vector of features).
+
 $$
 X =
 \begin{bmatrix}
@@ -44,12 +45,14 @@ Projecting data means **dropping points onto a subspace**.
 
 - **Vector projection**  
     - Multiplying a data point by a unit vector computes its **shadow on a line** in direction $ u $:
+
     $$
     \tilde{x}_i^\top u
     $$
     - Geometrically: you keep only the component of the point **along that direction**.
 - **Matrix projection**  
   - Multiplying by a matrix $ V_k $ (whose columns are directions) projects points onto a **lower‑dimensional plane or subspace**:
+
     $$
     \tilde{x}_i^\top V_k
     $$
@@ -58,6 +61,7 @@ In both cases, projection answers: “How much of this data point lies along the
 
 ### 1) Center the data
 PCA workflows center the data so each feature has mean zero:
+
 $$
 \tilde{X} = X - \mu
 $$
@@ -296,6 +300,7 @@ Where $V_k$ is a $d \times k$ projection matrix and $d$ is the number of origina
 This is actually the step where dimensionality reduction takes place. 
 
 To transform the original data into the lower‑dimensional space:
+
 $$
 Z = \tilde{X} V_k
 $$
@@ -327,11 +332,13 @@ Multiplying by $V_k$ does this because:
 - Each new axis captures the maximum possible varience of the data
 
 Row-wise:
+
 $$
 z_i = \tilde{x}_i^\top V_k
 $$
 
 What is actually happening:
+
 $$
 z_i =
 \begin{bmatrix}
