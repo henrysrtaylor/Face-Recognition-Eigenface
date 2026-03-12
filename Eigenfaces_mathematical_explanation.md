@@ -1,4 +1,4 @@
-# Face Regonition Eigenfaces 
+# Face Recognition Eigenfaces 
 Eigenfaces is simply applying Principal Component Analysis (PCA) to a face image data, and can be used for face recognition tasks. 
 
 It works by extracting the most statistically significant features from a collection of faces and using them to create a low-dimensional "fingerprint" for every individual. Instead of comparing thousands of raw pixels, the system compares a handful of essential facial characteristics to determine identity.
@@ -436,7 +436,6 @@ $$
 The covariance matrix captures how pixel values vary together across faces.
 
 ## Step 3) Compute eigenvectors (Eigenfaces)
-svd_solver='full'
 Solve the eigenvalue problem:
 
 $$

@@ -1,5 +1,6 @@
 *venv
 local_demo/data/*
+!local_demo/data/.gitkeep
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
