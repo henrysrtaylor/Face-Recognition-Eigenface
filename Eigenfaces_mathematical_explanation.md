@@ -44,18 +44,20 @@ $$
 Projecting data means **dropping points onto a subspace**.
 
 - **Vector projection**  
-    - Multiplying a data point by a unit vector computes its **shadow on a line** in direction $ u $:
+    - Multiplying a data point by a unit vector computes its **shadow on a line** in direction $u$:
 
-    $$
-    \tilde{x}_i^\top u
-    $$
-    - Geometrically: you keep only the component of the point **along that direction**.
+$$
+\tilde{x}_i^\top u
+$$
+
+  - Geometrically: you keep only the component of the point **along that direction**.
 - **Matrix projection**  
-  - Multiplying by a matrix $ V_k $ (whose columns are directions) projects points onto a **lower‑dimensional plane or subspace**:
+  - Multiplying by a matrix $V_k$ (whose columns are directions) projects points onto a **lower‑dimensional plane or subspace**:
 
-    $$
-    \tilde{x}_i^\top V_k
-    $$
+$$
+\tilde{x}_i^\top V_k
+$$
+
 - Geometrically: you rotate the coordinate system, then **discard directions you don’t care about**.
 In both cases, projection answers: “How much of this data point lies along these directions?”
 
@@ -71,6 +73,7 @@ Where $\mu$ is the mean of each column:
 $$
 \mu = \frac{1}{n} \sum_{i=1}^{n} x_i
 $$
+
 $$
 \tilde{X} = X - \mu
 $$
@@ -130,12 +133,12 @@ $$
         - Each entry is $y_i = \tilde{x}_i^\top u$ which is one scalar per data point, giving coordinates along direction $u$. The whole thing is the entire data cloud is dropped onto a line in direction ($u$).
         - We now want to answer how spread out are these individual observations ($i$) from each other? In other words, what is their varience: $\text{Var}(y)$.
         - We want the largest varience as these directions capture more of the data.
-        - Formula for varience: $ \text{Var}(x) = \frac{1}{n-1}\sum_{i=1}^n (x_i - \mu)^2$.
+        - Formula for varience: $\text{Var}(x) = \frac{1}{n-1}\sum_{i=1}^n (x_i - \mu)^2$.
         - BUT we have already mean centered our data so, $\text{Var}(y) = \frac{1}{n-1}\sum_{i=1}^{n} y_i^2$.
-        - Replace $Y$ with $\tilde{X}u$ and $ \text{Var}(\tilde{X}u) = \frac{1}{n-1} (\tilde{X}u)^\top (\tilde{X}u)$ which is starting to look like our covarience equation.
+        - Replace $Y$ with $\tilde{X}u$ and $\text{Var}(\tilde{X}u) = \frac{1}{n-1} (\tilde{X}u)^\top (\tilde{X}u)$ which is starting to look like our covarience equation.
         - Some simple rearrangement and subsituation and we end up with maximising $\text{Var}(\tilde{X}u) = u^\top C u$.
     - Constraint:
-        - Since $ \|u\| = \sqrt{u^\top u} $, the constraint $ \|u\| = 1 $ is equivalent to $ u^\top u = 1 $.
+        - Since $\|u\| = \sqrt{u^\top u}$, the constraint $\|u\| = 1$ is equivalent to $u^\top u = 1$.
         - This is done because: algebraically cleaner, differentiates nicely, and plugs directly into Lagrange multipliers.
 
 #### This is just a constrained optmisation problem
@@ -184,9 +187,9 @@ For a scalar function (a function that takes a vector as input and returns a sca
 
 Since the normal direction is given by $\nabla g(u)$, and at the constrained optimum $\nabla f(u)$ cannot have any component tangent to the surface, the two gradients must be scalar multiples of each other (by the linear‑algebra definition of parallel vectors). The scalar $\lambda$ is the Lagrange multiplier, which scales the constraint gradient but does not change its direction.
 
-We then solve for $\lambda$, but we can’t just divide by $ \nabla g(u) $. The quantity $ \nabla g(u) $ is a vector, and division by a vector is not defined.  
+We then solve for $\lambda$, but we can't just divide by $\nabla g(u)$. The quantity $\nabla g(u)$ is a vector, and division by a vector is not defined.
 
-From the Lagrange condition, $\nabla f(u) = \lambda \nabla g(u)$, the two gradients are parallel, and $ \lambda $ is the scalar that scales one into the other. To extract this scalar, we take a **dot product**, which reduces vectors to scalars:
+From the Lagrange condition, $\nabla f(u) = \lambda \nabla g(u)$, the two gradients are parallel, and $\lambda$ is the scalar that scales one into the other. To extract this scalar, we take a **dot product**, which reduces vectors to scalars:
 
 $$
 \nabla f(u) = \lambda \nabla g(u)
@@ -205,18 +208,20 @@ $$
 {\nabla g(u)^\top \nabla g(u)}
 $$
 
-This shows that $ \lambda $ is the **scaling factor** relating the two parallel gradients.
+This shows that $\lambda$ is the **scaling factor** relating the two parallel gradients.
 
 #### PCA
 
-For mean‑centred data with covariance matrix $ C $:
+For mean‑centred data with covariance matrix $C$:
 
-Objective (variance along direction $ u $):
+Objective (variance along direction $u$):
+
 $$
 f(u) = u^\top C u
 $$
 
 Constraint (unit‑length direction):
+
 $$
 g(u) = u^\top u - 1 = 0
 $$
@@ -224,7 +229,8 @@ $$
 ### Gradients
 
 We compute the gradients of the objective and the constraint.  
-Since $ C $ is symmetric:
+Since $C$ is symmetric:
+
 $$
 \nabla f(u) = 2 C u
 $$
@@ -251,7 +257,7 @@ C u = \lambda u.
 $$
 
 This is the **eigenvalue equation**.  
-Thus, the optimal directions $ u $ are the **eigenvectors** of the covariance matrix $ C $.
+Thus, the optimal directions $u$ are the **eigenvectors** of the covariance matrix $C$.
 
 
 Using the general expression derived earlier,
@@ -275,7 +281,7 @@ $$
 {u^\top u}.
 $$
 
-By the constraint $ u^\top u = 1 $, this simplifies to:
+By the constraint $u^\top u = 1$, this simplifies to:
 
 $$
 \lambda = u^\top C u
@@ -304,10 +310,13 @@ To transform the original data into the lower‑dimensional space:
 $$
 Z = \tilde{X} V_k
 $$
+
 Where
+
 $$
 Z \in \mathbb{R}^{n \times k}
 $$
+
 $$
 (n \times k) = (n \times d)⋅(d \times k)
 $$
@@ -400,7 +409,7 @@ $$
 x_i \in \mathbb{R}^d
 $$
 
-where $ d $ is the number of pixels.
+where $d$ is the number of pixels.
 
 Stack all faces into a data matrix:
 
@@ -449,13 +458,13 @@ $$
 C v = \lambda v
 $$
 
-- Each eigenvector $ v $ is a principal component
+- Each eigenvector $v$ is a principal component
 - When reshaped into image form, eigenvectors are called **eigenfaces**
-- Eigenvalues $ \lambda $ measure how much variance each eigenface explains
+- Eigenvalues $\lambda$ measure how much variance each eigenface explains
 
 ## Step 4) Choose number of components
 
-Keep the top $ k $ eigenvectors with the largest eigenvalues:
+Keep the top $k$ eigenvectors with the largest eigenvalues:
 
 $$
 V_k = [v_1, v_2, \dots, v_k]
@@ -477,8 +486,8 @@ $$
 z_i = \tilde{x}_i^\top V_k
 $$
 
-Each face is now represented as a $ k $-dimensional vector:
-- Each row of $ Z $ is one face
+Each face is now represented as a $k$-dimensional vector:
+- Each row of $Z$ is one face
 - Each coordinate measures how much the face aligns with one eigenface
 - This is an orthogonal projection onto the top-variance subspace
 
@@ -487,37 +496,41 @@ Each face is now represented as a $ k $-dimensional vector:
 ### Eigenfaces Inference
 
 Given a trained eigenfaces model consisting of:
-- mean face $ \mu $
-- eigenfaces $ V_k $
-- stored face coordinates $ \{ z_i \} $
+- mean face $\mu$
+- eigenfaces $V_k$
+- stored face coordinates $\{ z_i \}$
 
-**For a new face image $ x $:**
+**For a new face image $x$:**
 
 1. **Preprocess and center the face**
    - Align, resize, grayscale, flatten
    - Subtract the mean face:
-   $$
-   \tilde{x} = x - \mu
-   $$
+
+$$
+\tilde{x} = x - \mu
+$$
 
 2. **Project into eigenface space**
    - Compute PCA coordinates:
-   $$
-   z = \tilde{x}^\top V_k
-   \quad \in \mathbb{R}^k
-   $$
+
+$$
+z = \tilde{x}^\top V_k
+\quad \in \mathbb{R}^k
+$$
 
 3. **Compare to known faces**
    - Measure similarity to each stored face representation:
-   $$
-   d(z, z_i) = \| z - z_i \|_2
-   $$
+
+$$
+d(z, z_i) = \| z - z_i \|_2
+$$
 
 4. **Classification**
    - Choose the closest match:
-   $$
-   \hat{i} = \arg\min_i \| z - z_i \|_2
-   $$
+
+$$
+\hat{i} = \arg\min_i \| z - z_i \|_2
+$$
 
 **Interpretation**
 - The new face is represented as a point in eigenface space
