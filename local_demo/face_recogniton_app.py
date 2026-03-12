@@ -24,7 +24,7 @@ images = olivetti_faces.images
 labels = olivetti_faces.target
 
 # load your images from the collection 
-full_paths = [f"{your_data_path}/{file_name}" for file_name in os.listdir(your_data_path)]
+full_paths = [f"{your_data_path}/{file_name}" for file_name in os.listdir(your_data_path) if file_name.endswith(('.png', '.jpg', '.jpeg'))]
 
 error_string = f"Run data_capture.py or upload 10 greyscale 64x64 images of your face ({your_data_path}) first"
 assert len(full_paths) > 0, FileExistsError(error_string)

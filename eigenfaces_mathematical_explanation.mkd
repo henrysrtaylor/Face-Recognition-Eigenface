@@ -32,7 +32,7 @@ X =
 \begin{bmatrix}
 x_1 \\
 x_2 \\
-\vdots \
+\vdots \\
 x_n
 \end{bmatrix}
 \quad\text{where } x_i \in \mathbb{R}^d
@@ -124,12 +124,12 @@ $$
         - If we start with a single direction $u \in \mathbb{R}^d$ where $u^\top u = 1$.
         - We then project the mean-centered data ($\tilde{X} \in \mathbb{R}^{n \times d}$) onto that direction $\tilde{X}u$ which then results in $\tilde{X}u \in \mathbb{R}^n$.
         - Each entry is $y_i = \tilde{x}_i^\top u$ which is one scalar per data point, giving coordinates along direction $u$. The whole thing is the entire data cloud is dropped onto a line in direction ($u$).
-        - We now want to answer how spread out are these individual observations ($i$) from each other? In other words, what is their varience: $\operatorname{Var}(y)$.
+        - We now want to answer how spread out are these individual observations ($i$) from each other? In other words, what is their varience: $\text{Var}(y)$.
         - We want the largest varience as these directions capture more of the data.
-        - Formula for varience: $ \operatorname{Var}(x) = \frac{1}{n-1}\sum_{i=1}^n (x_i - \mu)^2$.
-        - BUT we have already mean centered our data so, $\operatorname{Var}(y) = \frac{1}{n-1}\sum_{i=1}^{n} y_i^2$.
-        - Replace $Y$ with $\tilde{X}u$ and $ \operatorname{Var}(\tilde{X}u) = \frac{1}{n-1} (\tilde{X}u)^\top (\tilde{X}u)$ which is starting to look like our covarience equation.
-        - Some simple rearrangement and subsituation and we end up with maximising $\boxed{\operatorname{Var}(\tilde{X}u) = u^\top C u}$.
+        - Formula for varience: $ \text{Var}(x) = \frac{1}{n-1}\sum_{i=1}^n (x_i - \mu)^2$.
+        - BUT we have already mean centered our data so, $\text{Var}(y) = \frac{1}{n-1}\sum_{i=1}^{n} y_i^2$.
+        - Replace $Y$ with $\tilde{X}u$ and $ \text{Var}(\tilde{X}u) = \frac{1}{n-1} (\tilde{X}u)^\top (\tilde{X}u)$ which is starting to look like our covarience equation.
+        - Some simple rearrangement and subsituation and we end up with maximising $\text{Var}(\tilde{X}u) = u^\top C u$.
     - Constraint:
         - Since $ \|u\| = \sqrt{u^\top u} $, the constraint $ \|u\| = 1 $ is equivalent to $ u^\top u = 1 $.
         - This is done because: algebraically cleaner, differentiates nicely, and plugs directly into Lagrange multipliers.
@@ -195,12 +195,10 @@ $$
 Now division is valid, giving
 
 $$
-\boxed{
 \lambda
 =
 \frac{\nabla f(u)^\top \nabla g(u)}
 {\nabla g(u)^\top \nabla g(u)}
-}
 $$
 
 This shows that $ \lambda $ is the **scaling factor** relating the two parallel gradients.
@@ -276,9 +274,7 @@ $$
 By the constraint $ u^\top u = 1 $, this simplifies to:
 
 $$
-\boxed{
 \lambda = u^\top C u
-}
 $$
 
 So PCA does:
@@ -365,7 +361,7 @@ NOTE IMPORTANT: This mean for row $i$, the same row $x_i$ is multiplied by each 
 
 Mathematically, this is an orthogonal projection onto a subspace:
 - Original: $\mathbb{R}^d$
-- Subspace: $\operatorname{span}(v_1, \dots, v_k)$
+- Subspace: $\text{span}(v_1, \dots, v_k)$
 
 Why this matters:
 - Variance often corresponds to signal
