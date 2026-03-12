@@ -130,9 +130,7 @@ Eigenvalues = variance explained by each principal component
 - We setup the problem as so:
 
 $$
-\max_{u}\; u^\top C u
-\quad \text{subject to} \quad
-u^\top u = 1
+\max_{u}\; u^\top C u \quad \text{subject to} \quad u^\top u = 1
 $$
 - We get to this because
     - Function: 
@@ -156,9 +154,7 @@ $$
 We solve this using the Lagrange Multiplier method. As a generic problem, we want to optimise a function subject to a constraint:
 
 $$
-\max_{u \in \mathbb{R}^d} \; f(u)
-\quad \text{subject to} \quad
-g(u) = 0
+\max_{u \in \mathbb{R}^d} \; f(u) \quad \text{subject to} \quad g(u) = 0
 $$
 Instead of a constrained optimisation in $u$, we solve an unconstrained optimisation in $(u,\lambda)$ and introduce a multiplier $\lambda$ to enforce the constraint and add a penalty if we violate the constraint.
 
@@ -171,17 +167,13 @@ $$
 A constrained optimum occurs at a stationary point of the Lagrangian, where
 
 $$
-\nabla_u \mathcal{L}(u, \lambda) = 0
-\quad \text{and} \quad
-\nabla_\lambda \mathcal{L}(u, \lambda) = 0.
+\nabla_u \mathcal{L}(u, \lambda) = 0 \quad \text{and} \quad \nabla_\lambda \mathcal{L}(u, \lambda) = 0
 $$
 
 Which translates to:
 
 $$
-\nabla f(u) = \lambda \nabla g(u)
-\quad \text{and} \quad
-g(u)=0.
+\nabla f(u) = \lambda \nabla g(u) \quad \text{and} \quad g(u)=0
 $$
 
 The first condition expresses the alignment of the two normal directions, while the second enforces the constraint.
@@ -203,20 +195,13 @@ We then solve for $\lambda$, but we can't just divide by $\nabla g(u)$. The quan
 From the Lagrange condition, $\nabla f(u) = \lambda \nabla g(u)$, the two gradients are parallel, and $\lambda$ is the scalar that scales one into the other. To extract this scalar, we take a **dot product**, which reduces vectors to scalars:
 
 $$
-\nabla f(u) = \lambda \nabla g(u)
-\;\Rightarrow\;
-\nabla f(u)^\top \nabla g(u)
-=
-\lambda \, \nabla g(u)^\top \nabla g(u).
+\nabla f(u) = \lambda \nabla g(u) \;\Rightarrow\; \nabla f(u)^\top \nabla g(u) = \lambda \, \nabla g(u)^\top \nabla g(u)
 $$
 
 Now division is valid, giving
 
 $$
-\lambda
-=
-\frac{\nabla f(u)^\top \nabla g(u)}
-{\nabla g(u)^\top \nabla g(u)}
+\lambda = \frac{\nabla f(u)^\top \nabla g(u)}{\nabla g(u)^\top \nabla g(u)}
 $$
 
 This shows that $\lambda$ is the **scaling factor** relating the two parallel gradients.
@@ -264,9 +249,7 @@ $$
 we obtain
 
 $$
-2 C u = \lambda (2 u)
-\;\Rightarrow\;
-C u = \lambda u.
+2 C u = \lambda (2 u) \;\Rightarrow\; C u = \lambda u
 $$
 
 This is the **eigenvalue equation**.  
@@ -276,22 +259,13 @@ Thus, the optimal directions $u$ are the **eigenvectors** of the covariance matr
 Using the general expression derived earlier,
 
 $$
-\lambda
-=
-\frac{\nabla f(u)^\top \nabla g(u)}
-{\nabla g(u)^\top \nabla g(u)},
+\lambda = \frac{\nabla f(u)^\top \nabla g(u)}{\nabla g(u)^\top \nabla g(u)}
 $$
 
 and substituting the PCA gradients:
 
 $$
-\lambda
-=
-\frac{(2 C u)^\top (2 u)}
-{(2 u)^\top (2 u)}
-=
-\frac{u^\top C u}
-{u^\top u}.
+\lambda = \frac{(2 C u)^\top (2 u)}{(2 u)^\top (2 u)} = \frac{u^\top C u}{u^\top u}
 $$
 
 By the constraint $u^\top u = 1$, this simplifies to:
