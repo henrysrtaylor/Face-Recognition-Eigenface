@@ -1,4 +1,4 @@
-# Face-Recognition-Eigenface
+# Face Recognition Eigenface
 A complete implementation of face recognition using the Eigenfaces (PCA) method. This repository is structured to guide you through the transition from high-level code to low-level linear algebra.
 
 ## 📋 Core Components
@@ -23,7 +23,7 @@ To run the real-time recognition demo, you must set up the project on your local
 ### 1. Clone the Repository
 Open your terminal and run:
 ```bash
-git clone "https://github.com/henrysrtaylor/Face-Recognition-Eigenface.git"
+git clone "https://github.com/henrysrtaylor/face-recognition-eigenface.git"
 cd Face-Recognition-Eigenface
 ```
 
